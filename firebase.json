@@ -3,33 +3,56 @@
     {
       "target": "utahfoundationcertification",
       "public": "apps/utahfoundationcertification/dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "cleanUrls": true,
       "trailingSlash": false
     },
     {
       "target": "utahelevationcertificate",
       "public": "apps/utahelevationcertificate/dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "cleanUrls": true,
       "trailingSlash": false
     },
     {
       "target": "metalbuildingfoundations",
       "public": "apps/metalbuildingfoundations/dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "firestationdesigners",
+      "public": "apps/firestationdesigners/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "utahsepticdesign",
+      "public": "apps/utahsepticdesign/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "utahroofingconsulting",
+      "public": "apps/utahroofingconsulting/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "watertankengineers",
+      "public": "apps/watertankengineers/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "retainingwallengineers",
+      "public": "apps/retainingwallengineers/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "cleanUrls": true,
       "trailingSlash": false
     }

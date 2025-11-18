@@ -1,0 +1,35 @@
+{
+  "projects": {
+    "default": "jde-microsites-9e863"
+  },
+  "targets": {
+    "jde-microsites-9e863": {
+      "hosting": {
+        "firestationdesigners": [
+          "firestationdesigners"
+        ],
+        "metalbuildingfoundations": [
+          "metalbuildingfoundations"
+        ],
+        "retainingwallengineers": [
+          "retainingwallengineers"
+        ],
+        "utahelevationcertificate": [
+          "utahelevationcertificate"
+        ],
+        "utahfoundationcertification": [
+          "utahfoundationcertification"
+        ],
+        "utahroofingconsulting": [
+          "utahroofingconsulting"
+        ],
+        "utahsepticdesign": [
+          "utahsepticdesign"
+        ],
+        "watertankengineers": [
+          "watertankengineers"
+        ]
+      }
+    }
+  }
+}
