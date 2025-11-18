@@ -1,0 +1,206 @@
+---
+import Header from 'ui/Header.astro';
+import Footer from 'ui/Footer.astro';
+import Hero from 'ui/Hero.astro';
+import ProcessSteps from 'ui/ProcessSteps.astro';
+import FAQ from 'ui/FAQ.astro';
+import ContactForm from 'ui/ContactForm.astro';
+import FeatureCards from 'ui/FeatureCards.astro';
+import ContentSection from 'ui/ContentSection.astro';
+import TeamSection from 'ui/TeamSection.astro';
+import '../styles/global.css';
+
+const siteName = 'Utah Elevation Certificate';
+const companyName = 'JDE Inc.';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '#about' },
+  { label: 'Process', href: '#process' },
+  { label: 'Team', href: '#team' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' }
+];
+
+const features = [
+  {
+    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Cost Savings",
+    description: "Accurate floodplain evaluations help avoid overpaying for flood insurance and can result in significant premium reductions."
+  },
+  {
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Fast Turnaround",
+    description: "Completed in just 2 weeks - our efficient process ensures you get your elevation certificate quickly."
+  },
+  {
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Professional Engineers & Surveyors",
+    description: "Each certificate prepared and reviewed by licensed engineers and surveyors with FEMA expertise."
+  }
+];
+
+const processSteps = [
+  {
+    number: '1',
+    title: 'Submit Request',
+    description: 'Submit request for certificate and payment to begin the process.'
+  },
+  {
+    number: '2',
+    title: 'Property Survey',
+    description: 'Property survey is performed by our licensed surveyors.'
+  },
+  {
+    number: '3',
+    title: 'Certificate Delivery',
+    description: 'Delivery of completed elevation certificate within 2 weeks.'
+  }
+];
+
+const teamMembers = [
+  {
+    name: "Ricky Anderson, PE/CFM",
+    title: "Professional Engineer, Certified Floodplain Manager",
+    bio: "Ricky Anderson brings extensive experience in FEMA elevation certificates and floodplain management. As a licensed Professional Engineer and Certified Floodplain Manager, Ricky has completed numerous elevation certificate projects throughout Utah and surrounding states, ensuring accurate compliance with FEMA requirements.",
+    image: null
+  },
+  {
+    name: "Brandon Barney",
+    title: "Survey Team Leader",
+    bio: "Brandon Barney serves as Survey Team Leader with extensive field experience as a Licensed Office Technician. Brandon has worked on hundreds of elevation certificate projects, bringing precision and attention to detail to every survey.",
+    image: null
+  },
+  {
+    name: "Joel Warren",
+    title: "GIS Specialist",
+    bio: "Joel Warren is a GIS Specialist and Certified Floodplain Manager with deep expertise in flood zone mapping and analysis. Joel's technical knowledge ensures accurate elevation data collection and proper documentation for all FEMA requirements.",
+    image: null
+  },
+  {
+    name: "Chelsy Cook",
+    title: "GIS & Survey Project Administrator",
+    bio: "Chelsy Cook manages GIS and survey projects with specialized experience in FEMA DASR Foundation work. Chelsy coordinates project timelines and ensures seamless communication between field teams and clients throughout the elevation certificate process.",
+    image: null
+  }
+];
+
+const faqs = [
+  {
+    question: 'What is the cost of a FEMA Elevation Certificate?',
+    answer: 'The cost of a FEMA Elevation Certificate depends on your location and property specifics. We have offices throughout Utah and the region to serve you: Richfield, Price, Manti, Roosevelt, St. George, Moab, Emery, Tooele, and Evanston Wyoming. Contact us for a detailed quote for your area - our team will provide accurate pricing based on your specific property and location.'
+  },
+  {
+    question: 'What is the timeline for Elevation Certificate to be Completed?',
+    answer: 'Most FEMA Elevation Certificates are completed within 2 weeks from the initial request. This timeline includes the property survey, data analysis, and preparation of the final certified document. Our streamlined process with offices across multiple locations helps us serve you quickly and efficiently.'
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Professional elevation certificate services in Utah. FEMA-compliant surveys for flood insurance and building permits." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{siteName} - Professional Elevation Survey Services</title>
+  </head>
+  <body>
+    <Header siteName={siteName} navItems={navItems} />
+
+    <main>
+      <Hero
+        title="FEMA Elevation Certificates For Flood Insurance"
+        description="Professional engineers and surveyors providing FEMA Elevation Certificates to homeowners living in high-risk flood areas."
+        primaryCTA={{ text: 'Get Started', href: '#contact' }}
+        variant="centered"
+      />
+
+      <FeatureCards features={features} />
+
+      <ContentSection
+        title="Still waiting for flood insurance?"
+        ctaText="Get Started"
+        ctaHref="#contact"
+      >
+        <p>
+          The FEMA elevation certificate process can be complicated and
+          time-consuming, leading to delays in obtaining flood insurance. Many
+          homeowners experience frustration waiting for their certificates while
+          trying to close on loans or renew insurance policies.
+        </p>
+        <p>
+          Our streamlined process with experienced engineers and surveyors
+          eliminates these delays. With offices throughout Utah and the region,
+          we provide fast, accurate FEMA elevation certificates that meet all
+          insurance and lender requirements. Stop waiting and get the coverage
+          you need with our efficient 2-week turnaround time.
+        </p>
+      </ContentSection>
+
+      <section id="process">
+        <ProcessSteps
+          title="FEMA Elevation Certificates in Three Easy Steps"
+          description="Our simple process gets you certified quickly and accurately"
+          steps={processSteps}
+        />
+      </section>
+
+      <ContentSection
+        title="Why Jones & DeMille Engineering?"
+        ctaText="Get Started"
+        ctaHref="#contact"
+        backgroundColor="bg-gray-50"
+      >
+        <p>
+          utahelevationcertificate.com is owned and operated by Jones & DeMille
+          Engineering, Inc., bringing decades of experience with FEMA projects
+          and elevation certificates. Our streamlined process and professional
+          approach ensure cost savings and peace of mind for every client.
+        </p>
+        <p>
+          We are licensed engineers serving multiple states across the Western
+          United States, including Utah, Wyoming, Arizona, Nevada, Colorado, New
+          Mexico, California, Idaho, and Texas. This multi-state expertise means
+          we understand regional requirements and can efficiently serve
+          properties throughout the Intermountain West and beyond.
+        </p>
+      </ContentSection>
+
+      <section id="team">
+        <TeamSection
+          title="Meet Our Experts"
+          description="Our team of licensed professionals brings specialized expertise in FEMA elevation certificates"
+          teamMembers={teamMembers}
+        />
+      </section>
+
+      <section id="faq">
+        <FAQ
+          title="Frequently Asked Questions"
+          description="Common questions about elevation certificates"
+          faqs={faqs}
+        />
+      </section>
+
+      <section id="contact">
+        <ContactForm
+          siteName="utahelevationcertificate"
+          title="Request Your Elevation Certificate"
+          description="Fill out the form below to get started"
+          includeFileUpload={false}
+        />
+      </section>
+    </main>
+
+    <Footer
+      siteName={siteName}
+      companyName={companyName}
+      footerLinks={[
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms of Service', href: '/terms' }
+      ]}
+    />
+  </body>
+</html>

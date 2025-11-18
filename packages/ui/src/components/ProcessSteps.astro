@@ -1,0 +1,92 @@
+---
+/**
+ * Process Steps Component
+ * Shows a multi-step process or workflow
+ * Props:
+ * - title: string (optional) - Section title
+ * - description: string (optional) - Section description
+ * - steps: Array<{
+ *     number: string,
+ *     title: string,
+ *     description: string,
+ *     icon: string (optional)
+ *   }> - Array of process steps
+ * - variant: 'grid' | 'list' - Display style (default: 'grid')
+ */
+
+const { title, description, steps = [], variant = 'grid' } = Astro.props;
+
+// Determine grid columns based on number of steps for grid variant
+const getGridClass = (stepCount) => {
+  if (stepCount <= 3) return 'md:grid-cols-3';
+  if (stepCount === 4) return 'md:grid-cols-2 lg:grid-cols-4';
+  if (stepCount === 5) return 'md:grid-cols-2 lg:grid-cols-5';
+  return 'md:grid-cols-2 lg:grid-cols-4'; // default for 6+
+};
+
+const gridClass = variant === 'grid' ? getGridClass(steps.length) : '';
+---
+
+<section class="bg-gray-50 section-padding">
+  <div class="container-custom">
+    {(title || description) && (
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        {title && (
+          <h2 class="text-gray-900 mb-4">{title}</h2>
+        )}
+        {description && (
+          <p class="text-gray-600 text-lg">{description}</p>
+        )}
+      </div>
+    )}
+
+    {variant === 'grid' ? (
+      <div class={`grid grid-cols-1 ${gridClass} gap-8`}>
+        {steps.map((step, index) => (
+          <div class="relative">
+            {/* Connector Line (not shown on last item in row) */}
+            {index < steps.length - 1 && (
+              <div class="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-primary-200 -ml-4" aria-hidden="true" />
+            )}
+
+            <div class="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+              {/* Step Number */}
+              <div class="flex items-center justify-center w-12 h-12 bg-primary-600 text-white rounded-full font-bold text-xl mb-4">
+                {step.number}
+              </div>
+
+              {/* Step Content */}
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                {step.title}
+              </h3>
+
+              <p class="text-gray-600">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="max-w-3xl mx-auto space-y-6">
+        {steps.map((step) => (
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full font-bold">
+                {step.number}
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-lg font-bold text-gray-900 mb-2">
+                {step.title}
+              </h3>
+              <p class="text-gray-600">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

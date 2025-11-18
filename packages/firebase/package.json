@@ -1,0 +1,16 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared Firebase configuration and utilities",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./config": "./src/config.js",
+    "./forms": "./src/forms.js",
+    "./storage": "./src/storage.js"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2"
+  }
+}

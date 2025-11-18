@@ -1,0 +1,86 @@
+---
+/**
+ * FAQ Component
+ * Accordion-style frequently asked questions
+ * Props:
+ * - title: string (optional) - Section title
+ * - description: string (optional) - Section description
+ * - faqs: Array<{
+ *     question: string,
+ *     answer: string
+ *   }> - Array of FAQ items
+ */
+
+const { title, description, faqs = [] } = Astro.props;
+---
+
+<section class="bg-white section-padding">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto">
+      {(title || description) && (
+        <div class="text-center mb-12">
+          {title && (
+            <h2 class="text-gray-900 mb-4">{title}</h2>
+          )}
+          {description && (
+            <p class="text-gray-600 text-lg">{description}</p>
+          )}
+        </div>
+      )}
+
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button
+              type="button"
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+            >
+              <span class="font-semibold text-gray-900 pr-8">
+                {faq.question}
+              </span>
+              <svg
+                class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div
+              id={`faq-answer-${index}`}
+              class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200"
+            >
+              <p class="text-gray-700">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.faq-button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+
+        // Toggle current FAQ
+        button.setAttribute('aria-expanded', String(!isExpanded));
+        answer?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  });
+</script>

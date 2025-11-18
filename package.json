@@ -1,0 +1,37 @@
+{
+  "name": "jde-websites",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for multiple Astro websites with shared components",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:utahfoundationcertification": "npm run dev --workspace=apps/utahfoundationcertification",
+    "dev:utahelevationcertificate": "npm run dev --workspace=apps/utahelevationcertificate",
+    "dev:metalbuildingfoundations": "npm run dev --workspace=apps/metalbuildingfoundations",
+    "dev:utahsepticdesign": "npm run dev --workspace=apps/utahsepticdesign",
+    "dev:utahroofingconsulting": "npm run dev --workspace=apps/utahroofingconsulting",
+    "dev:watertankengineers": "npm run dev --workspace=apps/watertankengineers",
+    "dev:retainingwallengineers": "npm run dev --workspace=apps/retainingwallengineers",
+    "dev:firestationdesigners": "npm run dev --workspace=apps/firestationdesigners",
+    "build": "npm run build --workspaces --if-present",
+    "build:utahfoundationcertification": "npm run build --workspace=apps/utahfoundationcertification",
+    "build:utahelevationcertificate": "npm run build --workspace=apps/utahelevationcertificate",
+    "build:metalbuildingfoundations": "npm run build --workspace=apps/metalbuildingfoundations",
+    "build:utahsepticdesign": "npm run build --workspace=apps/utahsepticdesign",
+    "build:utahroofingconsulting": "npm run build --workspace=apps/utahroofingconsulting",
+    "build:watertankengineers": "npm run build --workspace=apps/watertankengineers",
+    "build:retainingwallengineers": "npm run build --workspace=apps/retainingwallengineers",
+    "build:firestationdesigners": "npm run build --workspace=apps/firestationdesigners",
+    "preview": "npm run preview --workspaces --if-present"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

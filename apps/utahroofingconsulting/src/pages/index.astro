@@ -1,0 +1,205 @@
+---
+import Header from 'ui/Header.astro';
+import Footer from 'ui/Footer.astro';
+import Hero from 'ui/Hero.astro';
+import ProcessSteps from 'ui/ProcessSteps.astro';
+import FAQ from 'ui/FAQ.astro';
+import ContactForm from 'ui/ContactForm.astro';
+import FeatureCards from 'ui/FeatureCards.astro';
+import ContentSection from 'ui/ContentSection.astro';
+import ExpertCard from 'ui/ExpertCard.astro';
+import '../styles/global.css';
+
+const siteName = 'Utah Roofing Consulting';
+const companyName = 'Campbell Architecture';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '#services' },
+  { label: 'Process', href: '#process' },
+  { label: 'Expert', href: '#expert' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' }
+];
+
+const features = [
+  {
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Trusted Architects",
+    description: "Experienced architects offering consulting expertise within the Intermountain West."
+  },
+  {
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+    title: "Over 30 Years",
+    description: "Over 30 years of architecture, structural and roofing services including state-of-the-art technology."
+  },
+  {
+    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Free Design Estimates",
+    description: "Free design estimates on roof replacement and project management services."
+  }
+];
+
+const processSteps = [
+  {
+    number: '1',
+    title: 'Schedule Consultation',
+    description: 'Give us a call to schedule your roofing consultation with our expert team.'
+  },
+  {
+    number: '2',
+    title: 'Design Plan',
+    description: 'A comprehensive plan will be provided by the team for your roofing system needs.'
+  },
+  {
+    number: '3',
+    title: 'Project Management',
+    description: 'Let Campbell Architects manage your project from start to finish with expertise.'
+  }
+];
+
+const faqs = [
+  {
+    question: 'Why is a roofing consultant needed?',
+    answer: 'A roofing consultant provides unbiased expertise for building owners and managers. Our services include: Roof condition reports prepared by experienced professionals, Specification writing for roof replacement projects to ensure quality, Quality assurance inspections during installation to verify proper workmanship, Emergency response to unexpected roof events and failures, and New roof design review to prevent leaks and future issues. Unlike roofing contractors, consultants do not provide plant, labor, or materials - we focus solely on protecting your interests through expert analysis and oversight.'
+  },
+  {
+    question: 'What services are offered by a roofing consultant?',
+    answer: 'Campbell Roof Replacement Consulting and Design offers comprehensive roofing services including roof condition assessments, specification development for replacement projects, quality control inspections during installation, emergency consulting for roof failures, new construction roof design review, and project management services. We specialize in EPDM rubber/flat roofing systems and have over 30 years of experience serving commercial, residential, historical, and hospitality buildings throughout the Western United States.'
+  },
+  {
+    question: 'What should you expect from a roofing consultant?',
+    answer: 'You should expect unbiased professional analysis focused on your best interests, not sales. A quality roofing consultant will provide detailed documentation of roof conditions, clear specifications for any needed work, independent oversight of contractors, responsive communication throughout your project, and solutions that will perform in your specific climate and environment. With over 30 years of experience, Campbell Architecture brings expertise in finding the right re-roofing solution that will perform in any Western U.S. environment.'
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Professional roof replacement consulting and design services in Utah. Expert EPDM and flat roofing consultation by Campbell Architecture." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{siteName} - Professional Roof Consulting Services</title>
+  </head>
+  <body>
+    <Header siteName={siteName} navItems={navItems} />
+
+    <main>
+      <Hero
+        title="Roof Replacement Consulting and Design"
+        description="Campbell Roof Replacement Consulting and Design specializes in EPDM rubber/flat roofing consulting services. EPDM stands for ethylene propylene diene monomer, a synthetic rubber membrane widely used for low-slope commercial and residential roofing."
+        primaryCTA={{ text: 'Get Started', href: '#contact' }}
+        variant="centered"
+      />
+
+      <FeatureCards features={features} backgroundColor="bg-gray-900" />
+
+      <section id="process">
+        <ProcessSteps
+          title="Roof Replacement Design in Three Easy Steps"
+          description="Our streamlined process ensures your roofing project is handled professionally"
+          steps={processSteps}
+        />
+      </section>
+
+      <ContentSection
+        title="Roofing Consultants with Experience You Can Trust"
+        ctaText="Get Started"
+        ctaHref="#contact"
+      >
+        <p>
+          Kim Campbell brings decades of experience with Commercial Roof
+          Consulting and Design. With over 30 years in the industry, Kim has
+          spent more than 20 years inspecting roofing systems, programming, and
+          engineering solutions for buildings of all types.
+        </p>
+        <p>
+          Our experience spans commercial, residential, historical, and
+          hospitality buildings throughout the Western United States. We
+          understand the unique challenges of different climates and building
+          types, ensuring your roof is designed and installed correctly the
+          first time.
+        </p>
+        <p>
+          As Kim Campbell says: 'Finding the right re-roofing solution that will
+          perform in any Western U.S. environment is key.' Whether you're
+          dealing with extreme heat, cold, wind, or moisture, we have the
+          expertise to recommend and oversee the right roofing solution for your
+          specific needs.
+        </p>
+      </ContentSection>
+
+      <ContentSection
+        title="Why Campbell Roof Replacement Consulting and Design?"
+        ctaText="Get Started"
+        ctaHref="#contact"
+        backgroundColor="bg-gray-50"
+      >
+        <p>
+          When it comes to roof replacement, having an independent consultant on
+          your side ensures you get unbiased recommendations focused solely on
+          your best interests. We don't sell roofing materials or installation
+          services - we provide expert analysis and project oversight.
+        </p>
+        <p>
+          Our role is to protect your investment by ensuring proper design,
+          specification, and installation of your roofing system. Whether your
+          project is a small residential re-roof or a large commercial building,
+          the expertise and quality assurance we provide is invaluable.
+        </p>
+        <p>
+          With state-of-the-art technology and deep knowledge of modern roofing
+          systems, particularly EPDM and flat roofing solutions, Campbell
+          Architecture delivers consulting services that save you money in the
+          long run by preventing costly mistakes and ensuring lasting
+          performance.
+        </p>
+      </ContentSection>
+
+      <section id="expert">
+        <ExpertCard
+          name="Kim Campbell"
+          title="Principal Architect - Interior, Architectural"
+          bio="Kim Campbell serves as principal architect having completed numerous successful projects for public and private clients. His experience includes designing the Operations Center for 24 National Parks, which was the first building to meet LEED Silver certification standards in the region. Kim's extensive background in architectural design combined with specialized roofing expertise makes him uniquely qualified to provide comprehensive roof consulting and design services."
+          email="kim.j.campbell@campbell-design.com"
+          phone="(435) 554-5461"
+        />
+      </section>
+
+      <section id="faq">
+        <FAQ
+          title="Frequently Asked Questions"
+          description="Common questions about roof consulting and design services"
+          faqs={faqs}
+        />
+      </section>
+
+      <section id="contact">
+        <ContactForm
+          siteName="utahroofingconsulting"
+          title="Schedule a Consultation"
+          description="Fill out the form below to get started with your roofing project"
+          fields={[
+            { name: 'firstName', label: 'First Name', type: 'text', required: true },
+            { name: 'lastName', label: 'Last Name', type: 'text', required: true },
+            { name: 'phone', label: 'Phone', type: 'tel', required: false },
+            { name: 'email', label: 'Email', type: 'email', required: true },
+            { name: 'entityType', label: 'Type of Entity', type: 'select', required: false, options: ['Residential', 'Commercial', 'Industrial', 'Historical', 'Hospitality'] },
+            { name: 'message', label: 'Please give a brief overview of your project', type: 'textarea', required: true }
+          ]}
+        />
+      </section>
+    </main>
+
+    <Footer
+      siteName={siteName}
+      companyName={companyName}
+      footerLinks={[
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms of Service', href: '/terms' }
+      ]}
+    />
+  </body>
+</html>

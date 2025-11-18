@@ -1,0 +1,10 @@
+{
+  "name": "tailwind-config",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared Tailwind CSS configuration and design tokens",
+  "main": "./src/base.css",
+  "exports": {
+    ".": "./src/base.css"
+  }
+}

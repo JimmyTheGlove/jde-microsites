@@ -1,0 +1,246 @@
+---
+import Header from "ui/Header.astro";
+import Footer from "ui/Footer.astro";
+import Hero from "ui/Hero.astro";
+import ProcessSteps from "ui/ProcessSteps.astro";
+import FAQ from "ui/FAQ.astro";
+import ContactForm from "ui/ContactForm.astro";
+import FeatureCards from "ui/FeatureCards.astro";
+import ContentSection from "ui/ContentSection.astro";
+import ExpertCard from "ui/ExpertCard.astro";
+import "../styles/global.css";
+
+const siteName = "Utah Foundation Certification";
+const companyName = "Jones & DeMille Engineering, Inc.";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const features = [
+  {
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "5-Day Turnaround",
+    description:
+      "Fast service to meet your timeline needs with quick completion of foundation certifications.",
+  },
+  {
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Experts in 2TIA, HUD, and VA Foundation Certifications",
+    description:
+      "Specialized expertise in all major certification types for manufactured and modular homes.",
+  },
+  {
+    icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+    title: "Virtual Site Visits",
+    description:
+      "Convenient inspection option using video conferencing for efficient and safe evaluations.",
+  },
+];
+
+const processSteps = [
+  {
+    number: "1",
+    // title: "Hire an Engineer",
+    description:
+      "The homeowner hires an engineer to begin the foundation certification process.",
+  },
+  {
+    number: "2",
+    title: "Virtual Site Visit",
+    description:
+      "Inspectors conduct virtual site visit using video conferencing or direct meeting platform.",
+  },
+  {
+    number: "3",
+    title: "Foundation Review",
+    description:
+      "The engineer completes the foundation review as constructed by the HUD Permanent Foundation Guide for Manufactured Homes.",
+  },
+  {
+    number: "4",
+    title: "Certification Letter",
+    description:
+      "The engineer prepares a letter summarizing final findings and states whether or not the foundation is compliant.",
+  },
+  {
+    number: "5",
+    title: "Proceed with Transaction",
+    description:
+      "The homeowner proceeds with the refinance or sale with the certified foundation.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Why are foundation certifications important?",
+    answer:
+      "Foundation certifications are important because manufactured homes and modular homes require that the home and foundation be inspected by a professional, state-licensed engineer before a lender will approve a refinance or new loan. This ensures the foundation meets HUD standards and protects your investment.",
+  },
+  {
+    question:
+      "What are some of the requirements for an FHA/HUD manufactured home foundation certification?",
+    answer:
+      "FHA/HUD manufactured home foundation certifications must comply with the HUD Permanent Foundation Guide for Manufactured Homes. The engineer verifies that the foundation meets all structural requirements, proper anchoring, and code compliance for the specific home type.",
+  },
+  {
+    question: "How does a virtual site visit work?",
+    answer:
+      "Virtual site visits are conducted using video conferencing or direct meeting platforms. Our inspectors guide you through the property remotely, allowing you to show the foundation and key structural elements while maintaining safety and convenience. This innovative approach saves time while ensuring thorough inspection.",
+  },
+  {
+    question:
+      "How much does a manufactured home engineer foundation certification cost?",
+    answer:
+      "Costs vary based on property location, complexity, and specific requirements. We offer competitive pricing and typically complete certifications within 5 days. Contact us for a detailed quote tailored to your specific situation.",
+  },
+  {
+    question:
+      "How long does it take to have an engineer foundation certification?",
+    answer:
+      "Our typical turnaround time is 5 days from the virtual site visit to delivery of the completed certification letter. We understand the importance of timely completion for refinancing and sale transactions.",
+  },
+  {
+    question:
+      "What happens if the inspection finds the foundation is not HUD compliant?",
+    answer:
+      "If the foundation is found to be non-compliant, we provide a detailed report outlining the specific issues and recommendations for bringing it into compliance. This allows you to make informed decisions about repairs needed before proceeding with your transaction.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Professional foundation certification and inspection services in Utah. Expert analysis, detailed reports, and peace of mind for your construction project."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{siteName} - Professional Foundation Inspection Services</title>
+  </head>
+  <body>
+    <Header siteName={siteName} navItems={navItems} />
+
+    <main>
+      <Hero
+        title="A Great Foundation Starts with a Foundation Certification"
+        description="Manufactured homes and modular homes require that the home and foundation be inspected by a professional, state-licensed engineer. Utah Foundation Certification specializes in certified, accurate, and affordable home foundation inspections."
+        primaryCTA={{ text: "Schedule a Virtual Site Visit", href: "#contact" }}
+        variant="centered"
+      />
+
+      <FeatureCards features={features} />
+      <section id="process">
+        <ProcessSteps
+          title="A Simple Process to a Faster Loan Approval"
+          description="Our streamlined 5-step process ensures your foundation certification is completed efficiently"
+          steps={processSteps}
+        />
+      </section>
+
+      <ContentSection
+        title="Keeping it in the Budget"
+        ctaText="Schedule a Virtual Site Visit"
+        ctaHref="#contact"
+      >
+        <p>
+          Budget-friendly homeownership is important to all of us. When buying
+          or refinancing a manufactured home, both homeowners and lenders want
+          to ensure the foundation meets HUD standards. Foundation
+          certifications protect your investment and ensure compliance with
+          federal requirements, giving you peace of mind while keeping costs
+          manageable.
+        </p>
+        <p>
+          Our streamlined virtual site visit process helps reduce costs while
+          maintaining thorough inspection standards. This innovative approach
+          saves travel time and expenses, passing those savings on to you while
+          ensuring your foundation certification meets all necessary
+          requirements.
+        </p>
+      </ContentSection>
+
+      <ExpertCard
+        name="Seth Robertson, PE"
+        title="Inspections Coordinator Engineer at Jones & DeMille Engineering"
+        bio="Seth Robertson works with Utah Foundation Certifications specializing in manufactured home foundation inspections and certifications. With extensive experience in HUD compliance and virtual site visit coordination, Seth ensures every certification meets the highest standards while providing convenient service to homeowners."
+        email="Seth.robertson@jonesanddemille.com"
+        phone="(801) 899-0268"
+      />
+
+      <ContentSection
+        title="We Are Committed to Your Home and Family"
+        ctaText="Schedule a Virtual Site Visit"
+        ctaHref="#contact"
+        backgroundColor="bg-gray-50"
+      >
+        <p>
+          Your family's safety and your home's value are our top priorities.
+          Foundation certifications ensure your manufactured home meets all
+          safety and code compliance standards set by HUD. A properly certified
+          foundation isn't just a requirement for financing—it's an investment
+          in your home's structural integrity and your family's well-being.
+        </p>
+        <p>
+          Problem foundations can lead to costly repairs and decreased property
+          value. Our thorough inspection process identifies any issues early,
+          allowing you to address them before they become major concerns.
+          Whether you're refinancing or selling, a certified foundation gives
+          buyers and lenders confidence in your home's quality and safety.
+        </p>
+      </ContentSection>
+
+      <ContentSection title="Why Jones & DeMille Engineering?">
+        <p>
+          UtahFoundationCertification.com is owned and operated by Jones &
+          DeMille Engineering, Inc., a trusted name in engineering services
+          across the Western United States. With decades of experience and state
+          licensing in numerous states including Utah, Arizona, Nevada,
+          Colorado, and more, we bring professional expertise and reliability to
+          every foundation certification.
+        </p>
+        <p>
+          Our engineers are specifically trained in HUD Permanent Foundation
+          Guide requirements and manufactured home certifications. We understand
+          the unique challenges of manufactured home foundations and provide
+          accurate, thorough certifications that meet all lender and federal
+          requirements. Choose the experience and professionalism that comes
+          with Jones & DeMille Engineering.
+        </p>
+      </ContentSection>
+
+      <section id="faq">
+        <FAQ
+          title="Frequently Asked Questions"
+          description="Get answers to common questions about foundation certification for manufactured homes"
+          faqs={faqs}
+        />
+      </section>
+
+      <section id="contact">
+        <ContactForm
+          siteName="utahfoundationcertification"
+          title="Request a Free Quote"
+          description="Fill out the form below and we'll get back to you within 24 hours"
+          includeFileUpload={true}
+        />
+      </section>
+    </main>
+
+    <Footer
+      siteName={siteName}
+      companyName={companyName}
+      footerLinks={[
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms of Service", href: "/terms" },
+      ]}
+    />
+  </body>
+</html>

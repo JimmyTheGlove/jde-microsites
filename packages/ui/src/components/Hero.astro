@@ -1,0 +1,97 @@
+---
+/**
+ * Hero Section Component
+ * Props:
+ * - title: string - Main headline
+ * - subtitle: string (optional) - Subheadline
+ * - description: string (optional) - Description text
+ * - primaryCTA: {text: string, href: string} (optional) - Primary call-to-action button
+ * - secondaryCTA: {text: string, href: string} (optional) - Secondary call-to-action button
+ * - backgroundImage: string (optional) - Background image URL
+ * - variant: 'default' | 'centered' | 'split' | 'minimal' - Hero layout variant
+ */
+
+const {
+  title,
+  subtitle,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  backgroundImage,
+  variant = "default",
+} = Astro.props;
+
+const variants = {
+  default: "text-left",
+  centered: "text-center mx-auto max-w-4xl",
+  split: "text-left lg:w-1/2",
+  minimal: "text-center mx-auto",
+};
+
+const containerClass = variants[variant] || variants.default;
+const isMinimal = variant === "minimal";
+---
+
+<section
+  class="relative bg-gradient-to-br from-primary-600 to-primary-800 overflow-hidden"
+>
+  {
+    backgroundImage && (
+      <div
+        class={`absolute inset-0 ${isMinimal ? "opacity-30" : "opacity-20"}`}
+      >
+        <img src={backgroundImage} alt="" class="w-full h-full object-cover" />
+      </div>
+    )
+  }
+
+  <div
+    class={`relative container-custom ${isMinimal ? "py-32 md:py-48" : "section-padding"}`}
+  >
+    <div class={containerClass}>
+      {
+        !isMinimal && subtitle && (
+          <p class="text-primary-200 font-semibold text-sm uppercase tracking-wider mb-4">
+            {subtitle}
+          </p>
+        )
+      }
+
+      <h1 class="text-white mb-6">
+        {title}
+      </h1>
+
+      {
+        !isMinimal && description && (
+          <p class="text-primary-100 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            {description}
+          </p>
+        )
+      }
+
+      {
+        !isMinimal && (primaryCTA || secondaryCTA) && (
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            {primaryCTA && (
+              <a
+                href={primaryCTA.href}
+                class="inline-flex items-center justify-center bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg"
+              >
+                {primaryCTA.text}
+              </a>
+            )}
+
+            {secondaryCTA && (
+              <a
+                href={secondaryCTA.href}
+                class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary-600 transition-all duration-200"
+              >
+                {secondaryCTA.text}
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

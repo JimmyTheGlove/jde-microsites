@@ -1,0 +1,88 @@
+---
+/**
+ * Content Section Component
+ * Flexible content block with optional image
+ * Props:
+ * - title: string (optional) - Section title
+ * - content: string (optional) - HTML content (deprecated: use slot instead)
+ * - image: string (optional) - Image URL
+ * - imageAlt: string (optional) - Image alt text
+ * - imagePosition: 'left' | 'right' | 'none' - Image position (default: 'none')
+ * - backgroundColor: string (optional) - Background color class (default: 'bg-white')
+ * - ctaText: string (optional) - Call to action button text
+ * - ctaHref: string (optional) - Call to action button link
+ *
+ * Usage with slot (recommended):
+ * <ContentSection title="...">
+ *   <p>Your content here with proper formatting</p>
+ *   <p>More content...</p>
+ * </ContentSection>
+ */
+
+const {
+  title,
+  content,
+  image,
+  imageAlt = '',
+  imagePosition = 'none',
+  backgroundColor = 'bg-white',
+  ctaText,
+  ctaHref
+} = Astro.props;
+
+const hasImage = image && imagePosition !== 'none';
+const imageOrder = imagePosition === 'left' ? 'lg:order-first' : 'lg:order-last';
+---
+
+<section class={`${backgroundColor} py-16 md:py-24`}>
+  <div class="container-custom">
+    {hasImage ? (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class={imageOrder}>
+          <img
+            src={image}
+            alt={imageAlt}
+            class="w-full h-auto rounded-lg shadow-lg"
+          />
+        </div>
+        <div>
+          {title && (
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              {title}
+            </h2>
+          )}
+          <div class="prose prose-lg max-w-none text-gray-600">
+            {content ? <Fragment set:html={content} /> : <slot />}
+          </div>
+          {ctaText && ctaHref && (
+            <a
+              href={ctaHref}
+              class="inline-flex items-center justify-center bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200 shadow-lg mt-8"
+            >
+              {ctaText}
+            </a>
+          )}
+        </div>
+      </div>
+    ) : (
+      <div class="max-w-4xl mx-auto">
+        {title && (
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            {title}
+          </h2>
+        )}
+        <div class="prose prose-lg max-w-none text-gray-600">
+          {content ? <Fragment set:html={content} /> : <slot />}
+        </div>
+        {ctaText && ctaHref && (
+          <a
+            href={ctaHref}
+            class="inline-flex items-center justify-center bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200 shadow-lg mt-8"
+          >
+            {ctaText}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>

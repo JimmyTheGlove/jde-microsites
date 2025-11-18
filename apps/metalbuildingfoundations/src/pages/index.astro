@@ -1,0 +1,191 @@
+---
+import Header from 'ui/Header.astro';
+import Footer from 'ui/Footer.astro';
+import Hero from 'ui/Hero.astro';
+import ProcessSteps from 'ui/ProcessSteps.astro';
+import FAQ from 'ui/FAQ.astro';
+import ContactForm from 'ui/ContactForm.astro';
+import FeatureCards from 'ui/FeatureCards.astro';
+import ContentSection from 'ui/ContentSection.astro';
+import ExpertCard from 'ui/ExpertCard.astro';
+import '../styles/global.css';
+
+const siteName = 'Metal Building Foundations';
+const companyName = 'JDE Inc.';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '#services' },
+  { label: 'Process', href: '#process' },
+  { label: 'Expert', href: '#expert' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' }
+];
+
+const features = [
+  {
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "A Strong Foundation",
+    description: "Every foundation designed to stand the test of time with proper engineering and quality materials."
+  },
+  {
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Fast Turnaround",
+    description: "Completed in just 7 days - our efficient process gets your project moving quickly."
+  },
+  {
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Professional Structural Engineers",
+    description: "Each foundation prepared and reviewed by licensed engineers ensuring safety and compliance."
+  }
+];
+
+const processSteps = [
+  {
+    number: '1',
+    title: 'Submit Plans & Payment',
+    description: 'Submit stamped metal building plans and payment to begin the foundation design process.'
+  },
+  {
+    number: '2',
+    title: 'Foundation Design',
+    description: 'We will design the metal building foundation engineered specifically for your structure.'
+  },
+  {
+    number: '3',
+    title: 'Delivery of Plans',
+    description: 'Delivery of stamped metal building foundation plans required for building permit and construction.'
+  }
+];
+
+const faqs = [
+  {
+    question: 'What can Jones & DeMille Engineering do to help you with your metal building foundation?',
+    answer: 'Jones & DeMille Engineering provides complete foundation design services for pre-engineered and pre-manufactured metal buildings. We analyze your building specifications and site conditions to design a foundation that meets all structural requirements and local building codes. Our licensed engineers provide stamped foundation plans required for permits and construction.'
+  },
+  {
+    question: 'Why is it important to determine the use of the pre-manufactured or pre-engineered metal building?',
+    answer: 'The intended use of your metal building directly affects the foundation design requirements. Different uses such as storage, workshop, commercial space, or agricultural purposes have varying load requirements, floor needs, and code compliance standards. Understanding the use ensures the foundation is properly designed for the specific structural demands and safety requirements of your building.'
+  },
+  {
+    question: 'What should be considered when building a pre-engineered or pre-fabricated metal building?',
+    answer: 'Key considerations include site soil conditions, local building codes and permits, proper foundation design matching the building\'s load requirements, anchor bolt placement per manufacturer specifications, drainage and grading, and ensuring the foundation design is stamped by a licensed engineer. These factors ensure your metal building is safe, code-compliant, and built on a solid foundation.'
+  },
+  {
+    question: 'What are the benefits of using a structural engineer and designer when building pre-engineered and pre-fabricated metal buildings?',
+    answer: 'A structural engineer ensures your foundation meets all safety standards and building codes, provides stamped plans required for building permits, designs the foundation to properly support your specific building loads, accounts for local soil conditions and environmental factors, and gives you peace of mind that your investment is protected. Professional engineering is essential for long-term structural integrity.'
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Professional foundation installation for metal buildings in Utah. Expert site prep, concrete work, and certification services." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{siteName} - Professional Metal Building Foundation Services</title>
+  </head>
+  <body>
+    <Header siteName={siteName} navItems={navItems} />
+
+    <main>
+      <Hero
+        title="Foundation Engineering & Design For Metal Buildings"
+        description="Metal building foundations done engineered and stamped in seven days"
+        primaryCTA={{ text: 'Get Started', href: '#contact' }}
+        variant="centered"
+      />
+
+      <FeatureCards features={features} />
+
+      <section id="process">
+        <ProcessSteps
+          title="Metal Buildings Certified in Three Easy Steps"
+          description="Our streamlined process delivers stamped foundation plans quickly"
+          steps={processSteps}
+        />
+      </section>
+
+      <ContentSection
+        title="We've Got You Covered"
+        ctaText="Get Started"
+        ctaHref="#contact"
+      >
+        <p>
+          Pre-engineered metal buildings are an economical option for
+          agricultural, commercial, and industrial uses. Whether you need a
+          workshop, storage facility, or commercial space, the foundation design
+          is critical to the long-term success and safety of your structure.
+        </p>
+        <p>
+          Every metal building requires properly engineered foundation plans
+          that account for the building's load requirements, local soil
+          conditions, and anchor bolt specifications. Our experienced structural
+          engineers provide comprehensive foundation designs with all necessary
+          calculations and details, stamped and ready for permit submission.
+        </p>
+      </ContentSection>
+
+      <ContentSection
+        title="Why Jones & DeMille Engineering?"
+        ctaText="Get Started"
+        ctaHref="#contact"
+        backgroundColor="bg-gray-50"
+      >
+        <p>
+          Metal-building-foundations.com is owned and operated by Jones &
+          DeMille Engineering, Inc., bringing decades of structural engineering
+          experience to your metal building project. Our licensed engineers have
+          designed foundations for hundreds of metal buildings across multiple
+          states.
+        </p>
+        <p>
+          We understand the unique requirements of pre-engineered and
+          pre-manufactured metal buildings, including anchor bolt placement,
+          load transfer, and manufacturer specifications. With experience across
+          Utah, Wyoming, Arizona, Nevada, and surrounding states, we ensure your
+          foundation design meets all local building codes and engineering
+          standards.
+        </p>
+      </ContentSection>
+
+      <section id="expert">
+        <ExpertCard
+          name="Dan McGuire, PE"
+          title="Professional Engineer"
+          bio="Dan McGuire brings extensive experience in structural and site design, with specialized expertise in metal building framework foundations. As a licensed Professional Engineer, Dan has designed foundations for numerous pre-engineered metal buildings, ensuring each project meets stringent structural requirements and local building codes."
+          email="info@metal-building-foundations.com"
+          phone="(435) 899-8086"
+        />
+      </section>
+
+      <section id="faq">
+        <FAQ
+          title="Frequently Asked Questions"
+          description="Common questions about metal building foundations"
+          faqs={faqs}
+        />
+      </section>
+
+      <section id="contact">
+        <ContactForm
+          siteName="metalbuildingfoundations"
+          title="Request a Free Estimate"
+          description="Tell us about your metal building project"
+          includeFileUpload={true}
+        />
+      </section>
+    </main>
+
+    <Footer
+      siteName={siteName}
+      companyName={companyName}
+      footerLinks={[
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms of Service', href: '/terms' }
+      ]}
+    />
+  </body>
+</html>

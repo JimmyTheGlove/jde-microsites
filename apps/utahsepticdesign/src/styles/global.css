@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@source "../../../../packages/ui/**/*.astro";
+
+@theme {
+  /* Color Palette */
+  --color-primary-50: oklch(97% 0.01 250);
+  --color-primary-100: oklch(94% 0.03 250);
+  --color-primary-200: oklch(87% 0.07 250);
+  --color-primary-300: oklch(78% 0.11 250);
+  --color-primary-400: oklch(68% 0.15 250);
+  --color-primary-500: oklch(58% 0.18 250);
+  --color-primary-600: oklch(48% 0.16 250);
+  --color-primary-700: oklch(38% 0.13 250);
+  --color-primary-800: oklch(28% 0.09 250);
+  --color-primary-900: oklch(18% 0.05 250);
+  --color-primary-950: oklch(13% 0.03 250);
+
+  --color-secondary-50: oklch(97% 0.01 180);
+  --color-secondary-100: oklch(94% 0.03 180);
+  --color-secondary-200: oklch(87% 0.07 180);
+  --color-secondary-300: oklch(78% 0.11 180);
+  --color-secondary-400: oklch(68% 0.15 180);
+  --color-secondary-500: oklch(58% 0.18 180);
+  --color-secondary-600: oklch(48% 0.16 180);
+  --color-secondary-700: oklch(38% 0.13 180);
+  --color-secondary-800: oklch(28% 0.09 180);
+  --color-secondary-900: oklch(18% 0.05 180);
+  --color-secondary-950: oklch(13% 0.03 180);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-900 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+
+  h6 {
+    @apply text-base md:text-lg;
+  }
+}
+
+@layer utilities {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary-700 transition-colors duration-200;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-all duration-200;
+  }
+}
+
+/* Site-specific styles can be added here */

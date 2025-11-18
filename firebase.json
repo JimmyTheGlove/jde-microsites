@@ -1,0 +1,37 @@
+{
+  "hosting": [
+    {
+      "target": "utahfoundationcertification",
+      "public": "apps/utahfoundationcertification/dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "utahelevationcertificate",
+      "public": "apps/utahelevationcertificate/dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "target": "metalbuildingfoundations",
+      "public": "apps/metalbuildingfoundations/dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false
+    }
+  ]
+}

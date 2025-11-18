@@ -1,0 +1,21 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared UI components for all Astro sites",
+  "exports": {
+    "./Header.astro": "./src/components/Header.astro",
+    "./Footer.astro": "./src/components/Footer.astro",
+    "./Hero.astro": "./src/components/Hero.astro",
+    "./ProcessSteps.astro": "./src/components/ProcessSteps.astro",
+    "./TeamSection.astro": "./src/components/TeamSection.astro",
+    "./FAQ.astro": "./src/components/FAQ.astro",
+    "./ContactForm.astro": "./src/components/ContactForm.astro",
+    "./FeatureCards.astro": "./src/components/FeatureCards.astro",
+    "./ContentSection.astro": "./src/components/ContentSection.astro",
+    "./ExpertCard.astro": "./src/components/ExpertCard.astro"
+  },
+  "peerDependencies": {
+    "astro": "^5.0.0"
+  }
+}

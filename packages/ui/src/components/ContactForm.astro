@@ -1,0 +1,209 @@
+---
+/**
+ * Contact Form Component
+ * Integrated with Firebase Firestore
+ * Props:
+ * - siteName: string - Name of the site (for Firestore identification)
+ * - title: string (optional) - Form title
+ * - description: string (optional) - Form description
+ * - includeFileUpload: boolean (optional) - Whether to include file upload field
+ * - fields: Array<{
+ *     name: string,
+ *     label: string,
+ *     type: string,
+ *     required: boolean,
+ *     placeholder: string (optional),
+ *     options: Array<string> (optional, for select type)
+ *   }> (optional) - Custom form fields, defaults to standard contact fields
+ */
+
+const {
+  siteName,
+  title = 'Contact Us',
+  description = 'Fill out the form below and we\'ll get back to you as soon as possible.',
+  includeFileUpload = false,
+  fields = [
+    { name: 'name', label: 'Full Name', type: 'text', required: true, placeholder: 'John Doe' },
+    { name: 'email', label: 'Email Address', type: 'email', required: true, placeholder: 'john@example.com' },
+    { name: 'phone', label: 'Phone Number', type: 'tel', required: false, placeholder: '(555) 123-4567' },
+    { name: 'message', label: 'Message', type: 'textarea', required: true, placeholder: 'How can we help you?' }
+  ]
+} = Astro.props;
+---
+
+<section class="bg-gray-50 section-padding">
+  <div class="container-custom">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-gray-900 mb-4">{title}</h2>
+        {description && (
+          <p class="text-gray-600 text-lg">{description}</p>
+        )}
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <form id="contact-form" class="space-y-6">
+          {fields.map(field => (
+            <div>
+              <label
+                for={field.name}
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
+                {field.label}
+                {field.required && <span class="text-red-500">*</span>}
+              </label>
+
+              {field.type === 'textarea' ? (
+                <textarea
+                  id={field.name}
+                  name={field.name}
+                  rows="4"
+                  required={field.required}
+                  placeholder={field.placeholder}
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200"
+                ></textarea>
+              ) : field.type === 'select' ? (
+                <select
+                  id={field.name}
+                  name={field.name}
+                  required={field.required}
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200"
+                >
+                  <option value="">{field.placeholder || 'Select an option'}</option>
+                  {field.options?.map(option => (
+                    <option value={option}>{option}</option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  id={field.name}
+                  name={field.name}
+                  required={field.required}
+                  placeholder={field.placeholder}
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200"
+                />
+              )}
+            </div>
+          ))}
+
+          {includeFileUpload && (
+            <div>
+              <label
+                for="files"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
+                Attachments (optional)
+              </label>
+              <input
+                type="file"
+                id="files"
+                name="files"
+                multiple
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all duration-200"
+              />
+              <p class="mt-1 text-sm text-gray-500">
+                You can upload multiple files
+              </p>
+            </div>
+          )}
+
+          <div>
+            <button
+              type="submit"
+              id="submit-button"
+              class="w-full btn-primary flex items-center justify-center"
+            >
+              <span id="button-text">Send Message</span>
+              <svg
+                id="loading-spinner"
+                class="hidden animate-spin ml-2 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div id="form-message" class="hidden p-4 rounded-lg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ siteName, includeFileUpload }}>
+  import { submitContactForm, submitFormWithFiles, uploadMultipleFiles } from 'firebase';
+
+  const form = document.getElementById('contact-form');
+  const submitButton = document.getElementById('submit-button');
+  const buttonText = document.getElementById('button-text');
+  const loadingSpinner = document.getElementById('loading-spinner');
+  const formMessage = document.getElementById('form-message');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Disable submit button
+    submitButton.disabled = true;
+    buttonText.textContent = 'Sending...';
+    loadingSpinner?.classList.remove('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const data = {};
+
+      // Collect form fields
+      formData.forEach((value, key) => {
+        if (key !== 'files') {
+          data[key] = value;
+        }
+      });
+
+      let docId;
+
+      // Handle file uploads if included
+      if (includeFileUpload) {
+        const fileInput = document.getElementById('files');
+        const files = fileInput?.files;
+
+        if (files && files.length > 0) {
+          // Upload files first
+          const fileUrls = await uploadMultipleFiles(files, siteName, 'contact-forms');
+          // Submit form with file URLs
+          docId = await submitFormWithFiles(data, siteName, fileUrls);
+        } else {
+          // No files, just submit form
+          docId = await submitContactForm(data, siteName);
+        }
+      } else {
+        // No file upload, standard form submission
+        docId = await submitContactForm(data, siteName);
+      }
+
+      // Show success message
+      formMessage.className = 'p-4 rounded-lg bg-green-100 border border-green-400 text-green-700';
+      formMessage.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+      formMessage.classList.remove('hidden');
+
+      // Reset form
+      form.reset();
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+
+      // Show error message
+      formMessage.className = 'p-4 rounded-lg bg-red-100 border border-red-400 text-red-700';
+      formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+      formMessage.classList.remove('hidden');
+    } finally {
+      // Re-enable submit button
+      submitButton.disabled = false;
+      buttonText.textContent = 'Send Message';
+      loadingSpinner?.classList.add('hidden');
+    }
+  });
+</script>

@@ -1,0 +1,67 @@
+---
+/**
+ * Feature Cards Component
+ * Displays a grid of feature cards with icons, titles, and descriptions
+ * Props:
+ * - title: string (optional) - Section title
+ * - description: string (optional) - Section description
+ * - features: Array<{icon: string, title: string, description: string}> - Array of feature objects
+ * - backgroundColor: string (optional) - Background color class (default: 'bg-white')
+ * - columns: number (optional) - Number of columns (default: 3)
+ */
+
+const {
+  title,
+  description,
+  features = [],
+  backgroundColor = 'bg-white',
+  columns = 3
+} = Astro.props;
+
+const gridCols = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-3',
+  4: 'md:grid-cols-2 lg:grid-cols-4'
+};
+
+const gridClass = gridCols[columns] || gridCols[3];
+---
+
+<section class={`${backgroundColor} py-16 md:py-24`}>
+  <div class="container-custom">
+    {(title || description) && (
+      <div class="text-center mb-12">
+        {title && (
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {title}
+          </h2>
+        )}
+        {description && (
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <div class={`grid grid-cols-1 ${gridClass} gap-8`}>
+      {features.map((feature) => (
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+          {feature.icon && (
+            <div class="mb-4 text-primary-600">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.icon}></path>
+              </svg>
+            </div>
+          )}
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            {feature.title}
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
